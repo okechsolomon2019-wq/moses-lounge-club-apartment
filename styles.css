@@ -102,6 +102,9 @@ h1 em, h2 em { color: var(--gold); font-weight: 500; }
 .rental-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .rental-card { padding: 20px; background: var(--paper); }
 .rental-card .space-number { color: #9a7545; font-size: 7px; }
+.rental-photo-figure { margin: -20px -20px 16px; }
+.rental-photo { display: block; width: 100%; height: 145px; object-fit: cover; }
+.rental-photo-figure figcaption { padding: 7px 20px 0; color: var(--muted); font-size: 8px; }
 .rental-card h4 { margin: 12px 0; font-family: var(--serif); font-size: 20px; font-weight: 500; }
 .rental-card ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .rental-card li { display: flex; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 10px; }
