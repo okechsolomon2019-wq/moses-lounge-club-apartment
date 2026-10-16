@@ -1,0 +1,7 @@
+<resources>
+    <color name="colorPrimary">#101b1a</color>
+    <color name="colorPrimaryDark">#101b1a</color>
+    <color name="navigationColor">#101b1a</color>
+    <color name="navigationColorDark">#101b1a</color>
+    <color name="splashBackground">#101b1a</color>
+</resources>

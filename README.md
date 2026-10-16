@@ -1,34 +1,31 @@
 # Moses Lounge Club & Apartment
 
-A responsive, installable website for Moses Lounge in Sukmamur, South Sudan. It is built with plain HTML, CSS, and JavaScript and can be published with GitHub Pages.
+A responsive, installable website for Moses Lounge in Sukmamur, South Sudan. It is built with plain HTML, CSS, and JavaScript and is published at <https://okechsolomon2019-wq.github.io/>.
 
-## Publish with GitHub Pages
+## Website deployment
 
-1. Create a GitHub repository and add these project files to its `main` branch.
-2. In the repository, open **Settings → Pages** and select **GitHub Actions** as the build and deployment source.
-3. The included workflow publishes the site whenever you push to `main`. Open the Pages URL shown in the workflow or Pages settings.
-
-This workspace is not connected to a GitHub repository yet, so you will need to create or select a repository and push these files before the public website can be deployed.
+The published website is hosted from the public `okechsolomon2019-wq.github.io` repository. This repository is the app and website source; changes to website files here must also be copied to the Pages repository before they appear at the app's root URL. The existing project Pages URL remains available at <https://okechsolomon2019-wq.github.io/moses-lounge-club-apartment/>.
 
 ## Prepare for Google Play
 
-The Android package ID selected for Moses Lounge is `com.moseslounge.clubapartment`. A Play Store app has not been generated or submitted: the website must first have its permanent public HTTPS URL, and the owner must create a Google Play Console developer account.
+The Android app is configured as a Trusted Web Activity (TWA) for <https://okechsolomon2019-wq.github.io/>. Its package ID is `com.moseslounge.clubapartment`. The public site and privacy policy are live, but the app is not yet signed or submitted. The TWA will display as a browser Custom Tab until the website-to-app Digital Asset Links verification is published.
 
-1. Publish the website using GitHub Pages and confirm its permanent HTTPS URL.
-2. Create and verify the owner's Play Console developer account. Keep account passwords, payment details, and signing keys private; never add them to this repository.
-3. Build an Android Trusted Web Activity (TWA) for the published URL using the package ID above. The TWA must use the same final web origin as the published site.
-4. Sign the Android App Bundle with the owner's release key. Add the matching SHA-256 signing-certificate fingerprint to `/.well-known/assetlinks.json` on that website origin so Android can verify the TWA.
-5. Complete the Play Console app details, store listing, privacy policy and data-safety declarations, upload the signed bundle, and submit it for Google's review. Approval and publication are controlled by Google.
+1. Create and verify the owner's Play Console developer account. Keep account passwords, payment details, and signing keys private; never add them to this repository.
+2. Create an upload key in a secure location outside this repository, enable Play App Signing when prompted, and back up the upload key securely. Never share it or commit it.
+3. Build a signed Android App Bundle from `android/` using Gradle. The release build requires the `MOSES_RELEASE_STORE_FILE`, `MOSES_RELEASE_STORE_PASSWORD`, `MOSES_RELEASE_KEY_ALIAS`, and `MOSES_RELEASE_KEY_PASSWORD` environment variables. The output is `android/app/build/outputs/bundle/release/app-release.aab`.
+4. Create the app in Play Console and upload the AAB to an internal testing release. From Play Console's **App integrity** page, copy the SHA-256 fingerprint for the **App signing key certificate** (not the upload key).
+5. Add `/.well-known/assetlinks.json` to the website with package ID `com.moseslounge.clubapartment` and that exact fingerprint, then publish it at <https://okechsolomon2019-wq.github.io/.well-known/assetlinks.json>. Verify the URL returns the JSON successfully before testing the app.
+6. Complete the Play listing, privacy policy, content rating, target audience, app access, ads, and data-safety declarations. Test the TWA from Play's internal testing track before requesting production access.
 
-The TWA bundle and domain-verification file cannot be completed before the final website URL and release signing certificate exist. The website currently stores accounts and booking requests only in the visitor's browser; disclose this accurately in the store listing and Play Console declarations.
+The current site stores account details and booking requests only in the visitor's browser; requests are not sent to the venue and accounts do not sync across devices. Disclose this accurately in Play Console. Google may require additional testing or changes and controls approval and publication. A TWA does not guarantee approval if the app is judged to provide insufficient value beyond the website.
 
-## Android test app
+## Android app
 
-An Android app project is in `android/`. It opens the published Moses Lounge site in an app window and uses the Android launcher icon. Pushing Android project changes to `main` runs the **Build Moses Lounge Android app** workflow. On success, the workflow publishes an installable debug APK as a GitHub Release named `android-preview-*`.
+An Android TWA project is in `android/`. Pushing Android project changes to `main` runs the **Build Moses Lounge Android app** workflow. On success, the workflow publishes an installable debug APK as a GitHub Release named `android-preview-*`.
 
 To install a preview on Android, open the repository's **Releases** page, download `app-debug.apk`, open the download, and approve Android's “Install unknown apps” prompt for the browser or file manager if Android requests it. This is a test/debug build, not a Play Store release. Android may warn that it is from outside Google Play. Do not install APKs from an unknown source.
 
-The WebView package is useful for phone testing, but Google Play may reject a thin website wrapper. A production Play release should use a verified Trusted Web Activity or add genuinely useful native functionality, meet current Play requirements, and be built and signed using the owner's protected release credentials. No signing key or Google credential belongs in this repository.
+The debug APK is for testing only and is not a Play release. A Play release must be built as a signed Android App Bundle with the owner's protected upload key. No signing key or Google credential belongs in this repository.
 
 ### Draft Play Store listing
 
@@ -37,7 +34,7 @@ These are draft texts to review and update after live bookings and account handl
 - **App name:** Moses Lounge Sukmamur
 - **Short description:** Book rooms, shops, club packages and event spaces in Sukmamur, South Sudan.
 - **Full description:** Discover Moses Lounge Club & Apartment in Sukmamur, South Sudan. Explore self-contained rooms, monthly shop rentals, the lounge, conference and party halls, and the club package. Check the published rates and prepare a booking request. Contact manager Mandel Peter by phone to confirm availability. **In this current demo, booking requests and account information stay in the browser on the visitor's device and are not sent to Moses Lounge.** Update this disclosure before the app is submitted if the service changes.
-- **Privacy policy URL (after publishing):** `https://YOUR-GITHUB-PAGES-DOMAIN/YOUR-REPOSITORY/privacy.html`
+- **Privacy policy URL:** `https://okechsolomon2019-wq.github.io/privacy.html`
 - **Support contact:** Mandel Peter, +211 929 994 005 / +211 923 759 776
 
 The listing should not promise confirmed online reservations or working Google sign-in until those features are connected to a secure service. Capture genuine screenshots from the final published app; do not present mockups as app functionality. Complete Play Console content rating, target audience, app access, ads, and data-safety declarations truthfully for the release build. Google's requirements can change; follow the current Play Console prompts.

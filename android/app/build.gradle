@@ -2,6 +2,16 @@ plugins {
     id "com.android.application"
 }
 
+def releaseSigningValues = [
+    storeFile: System.getenv("MOSES_RELEASE_STORE_FILE"),
+    storePassword: System.getenv("MOSES_RELEASE_STORE_PASSWORD"),
+    keyAlias: System.getenv("MOSES_RELEASE_KEY_ALIAS"),
+    keyPassword: System.getenv("MOSES_RELEASE_KEY_PASSWORD")
+]
+def releaseSigningConfigured = releaseSigningValues.values().every { value ->
+    value != null && !value.isEmpty()
+}
+
 android {
     namespace "com.moseslounge.clubapartment"
     compileSdk 36
@@ -13,9 +23,42 @@ android {
         versionCode 1
         versionName "1.0.0"
     }
+
+    signingConfigs {
+        release {
+            if (releaseSigningConfigured) {
+                storeFile file(releaseSigningValues.storeFile)
+                storePassword releaseSigningValues.storePassword
+                keyAlias releaseSigningValues.keyAlias
+                keyPassword releaseSigningValues.keyPassword
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            if (releaseSigningConfigured) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
 }
 
 dependencies {
     implementation "androidx.activity:activity:1.10.1"
     implementation "androidx.appcompat:appcompat:1.7.0"
+    implementation "com.google.androidbrowserhelper:androidbrowserhelper:2.7.4"
+}
+
+tasks.configureEach {
+    if (name == "bundleRelease" || name == "assembleRelease") {
+        doFirst {
+            if (!releaseSigningConfigured) {
+                throw new GradleException(
+                    "Set MOSES_RELEASE_STORE_FILE, MOSES_RELEASE_STORE_PASSWORD, " +
+                    "MOSES_RELEASE_KEY_ALIAS, and MOSES_RELEASE_KEY_PASSWORD to build a signed release."
+                )
+            }
+        }
+    }
 }

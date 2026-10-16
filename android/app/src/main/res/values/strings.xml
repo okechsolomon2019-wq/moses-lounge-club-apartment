@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Moses Lounge</string>
+    <string name="launch_url">https://okechsolomon2019-wq.github.io/</string>
+    <string name="provider_authority" translatable="false">com.moseslounge.clubapartment.fileprovider</string>
+    <string name="asset_statements" translatable="false">[{"include":"https://okechsolomon2019-wq.github.io/.well-known/assetlinks.json"}]</string>
 </resources>
