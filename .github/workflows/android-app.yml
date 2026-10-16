@@ -1,0 +1,49 @@
+name: Build Moses Lounge Android app
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "android/**"
+      - ".github/workflows/android-app.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-preview
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Install Android API 36
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.13"
+      - name: Build installable debug APK
+        working-directory: android
+        run: gradle --no-daemon assembleDebug
+      - name: Publish APK download
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: android-preview-${{ github.run_number }}
+        run: |
+          gh release create "$RELEASE_TAG" \
+            android/app/build/outputs/apk/debug/app-debug.apk \
+            --title "Moses Lounge Android preview ${{ github.run_number }}" \
+            --notes "Installable Android preview of the Moses Lounge website. This debug APK is for testing only and is not a Google Play Store release. Published automatically from ${{ github.sha }}."

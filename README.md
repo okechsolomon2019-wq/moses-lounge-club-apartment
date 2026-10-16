@@ -22,6 +22,14 @@ The Android package ID selected for Moses Lounge is `com.moseslounge.clubapartme
 
 The TWA bundle and domain-verification file cannot be completed before the final website URL and release signing certificate exist. The website currently stores accounts and booking requests only in the visitor's browser; disclose this accurately in the store listing and Play Console declarations.
 
+## Android test app
+
+An Android app project is in `android/`. It opens the published Moses Lounge site in an app window and uses the Android launcher icon. Pushing Android project changes to `main` runs the **Build Moses Lounge Android app** workflow. On success, the workflow publishes an installable debug APK as a GitHub Release named `android-preview-*`.
+
+To install a preview on Android, open the repository's **Releases** page, download `app-debug.apk`, open the download, and approve Android's “Install unknown apps” prompt for the browser or file manager if Android requests it. This is a test/debug build, not a Play Store release. Android may warn that it is from outside Google Play. Do not install APKs from an unknown source.
+
+The WebView package is useful for phone testing, but Google Play may reject a thin website wrapper. A production Play release should use a verified Trusted Web Activity or add genuinely useful native functionality, meet current Play requirements, and be built and signed using the owner's protected release credentials. No signing key or Google credential belongs in this repository.
+
 ### Draft Play Store listing
 
 These are draft texts to review and update after live bookings and account handling work end-to-end:
