@@ -73,20 +73,21 @@ h1 em, h2 em { color: var(--gold); font-weight: 500; }
 .dark-eyebrow { margin-bottom: 19px; color: #9a7545; }
 .section-heading h2 { margin: 0; }
 .section-heading > p { max-width: 330px; margin-bottom: 5px; }
+.photo-disclaimer { margin: -20px 0 22px; color: var(--muted); font-size: 10px; line-height: 1.6; }
 .spaces-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
 .space-card { overflow: hidden; background: var(--paper); }
 .space-art { position: relative; display: flex; height: 190px; align-items: start; justify-content: space-between; overflow: hidden; padding: 20px 22px; color: white; }
+.space-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.space-art::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(8 19 17 / 48%), transparent 80%), linear-gradient(0deg, rgb(9 19 17 / 20%), transparent 55%); content: ""; }
 .art-label, .space-number { color: rgb(255 255 255 / 75%); font-size: 8px; font-weight: 700; letter-spacing: .16em; }
-.art-icon { position: relative; z-index: 1; color: var(--gold); font-family: var(--serif); font-size: 29px; }
+.art-label, .art-icon { position: relative; z-index: 1; }
+.art-icon { color: var(--gold); font-family: var(--serif); font-size: 29px; }
 .card-apartment .space-art { background: linear-gradient(135deg, #31453c, #78836e); }
 .card-lounge .space-art { background: linear-gradient(135deg, #2c352e, #8b684b); }
 .card-conference .space-art { background: linear-gradient(135deg, #455449, #83917b); }
 .card-party .space-art { background: linear-gradient(135deg, #3e3838, #9d7052); }
-.art-window { position: absolute; right: 17%; bottom: -37px; width: 42%; height: 142px; border: 1px solid rgb(240 218 173 / 65%); background: linear-gradient(0deg, rgb(220 187 131 / 26%), rgb(222 217 186 / 7%)); box-shadow: 15px 0 rgb(255 255 255 / 4%), -15px 0 rgb(255 255 255 / 4%); }
-.art-window::after { position: absolute; top: 0; bottom: 0; left: 50%; border-left: 1px solid rgb(240 218 173 / 45%); content: ""; }
-.art-orb { position: absolute; top: 38px; right: 27%; width: 93px; height: 93px; border: 1px solid rgb(240 205 145 / 40%); border-radius: 50%; background: radial-gradient(circle, rgb(234 190 126 / 43%), rgb(211 149 88 / 8%) 68%, transparent 70%); box-shadow: 0 0 35px rgb(216 158 101 / 22%); }
-.art-table { position: absolute; right: 16%; bottom: 12px; width: 47%; height: 65px; border: 1px solid rgb(255 255 255 / 40%); border-radius: 50%; background: rgb(29 49 42 / 46%); box-shadow: 0 24px 0 -22px var(--gold); }
-.art-spark { position: absolute; right: 18%; bottom: 6px; width: 170px; height: 144px; background: radial-gradient(circle at 22% 39%, #e8c188 0 1px, transparent 2px), radial-gradient(circle at 52% 24%, #e8c188 0 2px, transparent 3px), radial-gradient(circle at 74% 48%, #e8c188 0 1px, transparent 2px), radial-gradient(circle at 40% 69%, #e8c188 0 1px, transparent 2px), radial-gradient(circle at 83% 78%, #e8c188 0 2px, transparent 3px), radial-gradient(circle at 13% 82%, #e8c188 0 1px, transparent 2px); }
+.card-pool { grid-column: 1 / -1; }
+.card-pool .space-art { height: 240px; }
 .space-info { display: flex; min-height: 137px; align-items: center; justify-content: space-between; gap: 15px; padding: 23px 24px; }
 .space-number { color: #9a7545; }
 .space-info h3 { margin: 9px 0 6px; font-family: var(--serif); font-size: 23px; font-weight: 500; }
@@ -257,11 +258,14 @@ h1 em, h2 em { color: var(--gold); font-weight: 500; }
   .spaces-section { padding: 66px 0; }
   .section-heading { align-items: start; flex-direction: column; gap: 15px; margin-bottom: 26px; }
   .section-heading > p { margin: 0; font-size: 12px; }
+  .photo-disclaimer { margin: -10px 0 16px; }
   .spaces-grid { grid-template-columns: 1fr; gap: 14px; }
+  .card-pool { grid-column: auto; }
   .rental-details { grid-template-columns: 1fr; gap: 22px; margin-top: 32px; padding: 22px 17px; }
   .rental-cards { grid-template-columns: 1fr; }
   .amenities-row { grid-template-columns: 1fr; gap: 15px; padding: 19px; }
   .space-art { height: 165px; }
+  .card-pool .space-art { height: 190px; }
   .space-info { min-height: 126px; padding: 19px; }
   .space-info h3 { font-size: 21px; }
   .space-info p { max-width: 270px; }

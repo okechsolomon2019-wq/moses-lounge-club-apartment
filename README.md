@@ -64,3 +64,7 @@ This is a front-end demo: account details and booking requests are kept in the c
 Prices are shown as supplied; confirm availability and payment details directly with the manager.
 
 For real multi-device accounts and bookings, connect the site to a trusted server or booking service before collecting customer information. Do not use this local demo as secure production authentication.
+
+## Sample venue photos
+
+The photos in `assets/photos/` are illustrative Unsplash sample images, not photographs of Moses Lounge. They are included locally so the site and its offline PWA cache can display them reliably. Replace them with real venue photos when available. Sources: [guest room](https://images.unsplash.com/photo-1611892440504-42a792e24d32), [lounge](https://images.unsplash.com/photo-1517248135467-4c7edcad34c4), [conference room](https://images.unsplash.com/photo-1497366754035-f200968a6e72), [event hall](https://images.unsplash.com/photo-1519167758481-83f550bb49b3), and [swimming pool](https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7).
