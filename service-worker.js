@@ -1,5 +1,5 @@
-const CACHE_NAME = "moses-lounge-v7";
-const APP_FILES = ["./", "./index.html", "./privacy.html", "./styles.css?v=5", "./app.js?v=5", "./manifest.webmanifest", "./icon.svg"];
+const CACHE_NAME = "moses-lounge-v8";
+const APP_FILES = ["./", "./index.html", "./privacy.html", "./styles.css?v=5", "./app.js?v=5", "./manifest.webmanifest", "./icon.svg", "./icon-180.png", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_FILES)));

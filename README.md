@@ -36,7 +36,9 @@ The listing should not promise confirmed online reservations or working Google s
 
 ## Install on a phone or computer
 
-Open the published HTTPS website in Safari on iPhone and use **Share → Add to Home Screen**. In Chrome or Edge on a computer or Android phone, use the browser's **Install app** option. The website also keeps its main pages available offline after the first successful visit.
+Open the published HTTPS website in Safari on iPhone and use **Share → Add to Home Screen**. In Chrome on Android, use the browser menu and choose **Install app** or **Add to Home screen**. In Chrome or Edge on a computer, use the browser's **Install app** option. The website also keeps its main pages available offline after the first successful visit.
+
+This installs the website as a Progressive Web App (PWA) from the browser. It is not yet an Android Play Store listing or a standalone iPhone App Store application.
 
 ## Accounts and booking requests
 
